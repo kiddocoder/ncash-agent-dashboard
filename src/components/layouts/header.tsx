@@ -28,7 +28,7 @@ export function Header({ title, actions }: HeaderProps) {
 
           {/* UK Flag */}
           <div className="w-6 h-6 relative">
-            <Image src="/uk-flag.png" alt="UK" fill className="object-contain" />
+            <Image src="https://flagsapi.com/ZA/flat/64.png" alt="UK" fill className="object-contain" />
           </div>
 
           {/* Notification Bell */}
@@ -39,7 +39,7 @@ export function Header({ title, actions }: HeaderProps) {
           {/* User Profile */}
           <button className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
-              <Image src="/diverse-user-avatars.png" alt="User" width={32} height={32} />
+              <Image src="/profile.svg" alt="User" width={32} height={32} />
             </div>
             <span className="text-sm font-medium">Toussaint ir.</span>
             <ChevronDown className="w-4 h-4" />

@@ -1,6 +1,6 @@
 "use client"
 
-import { Card } from "@/src/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts"
 
 const data = [
@@ -11,7 +11,7 @@ const data = [
 
 export function LoanStatusChart() {
   return (
-    <Card className="p-6 bg-chart-bg border-none">
+    <Card className="p-6 bg-chart-bg border-none shadow-none">
       <h3 className="font-semibold mb-6">Loan Status Breakdown</h3>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>

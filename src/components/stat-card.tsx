@@ -10,9 +10,9 @@ interface StatCardProps {
 
 export function StatCard({ title, value, trend, isPositive = true }: StatCardProps) {
   return (
-    <Card className="p-5 bg-card-bg border-none">
+    <Card className="p-5 shadow-none bg-card-bg border-none">
       <div className="space-y-2">
-        <p className="text-sm text-muted-foreground">{title}</p>
+        <p className="text-sm text-accent-foreground">{title}</p>
         <div className="flex items-end justify-between">
           <h3 className="text-2xl font-bold">{value}</h3>
           <div className="flex items-center gap-1 text-xs text-muted-foreground">

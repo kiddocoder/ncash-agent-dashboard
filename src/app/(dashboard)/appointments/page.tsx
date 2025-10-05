@@ -1,9 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Header } from "@/src/components/header"
-import { Button } from "@/src/components/ui/button"
-import { Input } from "@/src/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { ChevronLeft, ChevronRight, Search, Plus } from "lucide-react"
 
 const calendarEvents = [
@@ -115,101 +114,99 @@ export default function AppointmentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header
-        actions={
+    <div className="p-6">
+
+      {/* Calendar Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold mb-6">Schedule</h2>
+        <div className="flex gap-3">
           <Button className="bg-primary hover:bg-primary/90 text-white">
             <Plus className="w-4 h-4 mr-2" />
             New Schedule
           </Button>
-        }
-      />
-
-      <div className="p-6">
-        <h2 className="text-2xl font-semibold mb-6">Schedule</h2>
-
-        {/* Calendar Controls */}
-        <div className="bg-white rounded-lg p-6 mb-6">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <Button variant="outline" className="text-sm bg-transparent">
-                Today
+        </div>
+      </div>
+      {/* Calendar Controls */}
+      <div className="bg-white rounded-lg p-6 mb-6">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <Button variant="outline" className="text-sm bg-transparent">
+              Today
+            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="icon">
+                <ChevronLeft className="w-5 h-5" />
               </Button>
-              <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon">
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <ChevronRight className="w-5 h-5" />
-                </Button>
-              </div>
-              <span className="text-lg font-semibold">{currentMonth}</span>
+              <Button variant="ghost" size="icon">
+                <ChevronRight className="w-5 h-5" />
+              </Button>
             </div>
-
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input placeholder="Search a Schedule" className="pl-10 w-64" />
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  variant={viewMode === "daily" ? "default" : "outline"}
-                  onClick={() => setViewMode("daily")}
-                  className={viewMode === "daily" ? "bg-primary text-white" : ""}
-                >
-                  Daily
-                </Button>
-                <Button variant={viewMode === "weekly" ? "default" : "outline"} onClick={() => setViewMode("weekly")}>
-                  Weekly
-                </Button>
-                <Button variant={viewMode === "monthly" ? "default" : "outline"} onClick={() => setViewMode("monthly")}>
-                  Daily
-                </Button>
-              </div>
-            </div>
+            <span className="text-lg font-semibold">{currentMonth}</span>
           </div>
 
-          {/* Calendar Grid */}
-          <div className="border border-border rounded-lg overflow-hidden">
-            {/* Days of Week Header */}
-            <div className="grid grid-cols-7 bg-muted/30">
-              {daysOfWeek.map((day) => (
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input placeholder="Search a Schedule" className="pl-10 w-64" />
+            </div>
+            <div className="flex gap-2">
+              <Button
+                variant={viewMode === "daily" ? "default" : "outline"}
+                onClick={() => setViewMode("daily")}
+                className={viewMode === "daily" ? "bg-primary text-white" : ""}
+              >
+                Daily
+              </Button>
+              <Button variant={viewMode === "weekly" ? "default" : "outline"} onClick={() => setViewMode("weekly")}>
+                Weekly
+              </Button>
+              <Button variant={viewMode === "monthly" ? "default" : "outline"} onClick={() => setViewMode("monthly")}>
+                Daily
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Calendar Grid */}
+        <div className="border border-border rounded-lg overflow-hidden">
+          {/* Days of Week Header */}
+          <div className="grid grid-cols-7 bg-muted/30">
+            {daysOfWeek.map((day) => (
+              <div
+                key={day}
+                className="p-3 text-center text-sm font-medium text-muted-foreground border-r border-border last:border-r-0"
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+
+          {/* Calendar Days */}
+          <div className="grid grid-cols-7">
+            {calendarDays.map((day, index) => {
+              const events = getEventsForDate(day.date)
+              const event = events[0]
+
+              return (
                 <div
-                  key={day}
-                  className="p-3 text-center text-sm font-medium text-muted-foreground border-r border-border last:border-r-0"
+                  key={index}
+                  className={`min-h-[120px] p-3 border-r border-b border-border last:border-r-0 ${day.month !== "current" ? "bg-muted/10" : "bg-white"
+                    } ${event ? event.color : ""}`}
                 >
-                  {day}
-                </div>
-              ))}
-            </div>
-
-            {/* Calendar Days */}
-            <div className="grid grid-cols-7">
-              {calendarDays.map((day, index) => {
-                const events = getEventsForDate(day.date)
-                const event = events[0]
-
-                return (
                   <div
-                    key={index}
-                    className={`min-h-[120px] p-3 border-r border-b border-border last:border-r-0 ${day.month !== "current" ? "bg-muted/10" : "bg-white"
-                      } ${event ? event.color : ""}`}
+                    className={`text-sm font-medium mb-2 ${day.month !== "current" ? "text-muted-foreground" : ""}`}
                   >
-                    <div
-                      className={`text-sm font-medium mb-2 ${day.month !== "current" ? "text-muted-foreground" : ""}`}
-                    >
-                      {day.label || (day.month === "current" ? `April ${day.day}` : day.day)}
-                    </div>
-                    {event && (
-                      <div className="space-y-1">
-                        <p className="text-xs font-semibold line-clamp-2">{event.title}</p>
-                        <p className="text-xs text-muted-foreground">{event.author}</p>
-                      </div>
-                    )}
+                    {day.label || (day.month === "current" ? `April ${day.day}` : day.day)}
                   </div>
-                )
-              })}
-            </div>
+                  {event && (
+                    <div className="space-y-1">
+                      <p className="text-xs font-semibold line-clamp-2">{event.title}</p>
+                      <p className="text-xs text-muted-foreground">{event.author}</p>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

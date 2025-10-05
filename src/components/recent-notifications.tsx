@@ -1,4 +1,4 @@
-import { Bell } from "lucide-react"
+import { Bell, ChevronRight } from "lucide-react"
 import { Card } from "@/components/ui/card"
 
 export function RecentNotifications() {
@@ -16,10 +16,10 @@ export function RecentNotifications() {
   ]
 
   return (
-    <Card className="p-5 bg-white border border-border h-full">
+    <Card className="p-5 bg-card-bg shadow-none border-none h-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold">Recent Notification</h3>
-        <button className="text-sm text-primary hover:underline">View more</button>
+        <button className="flex gap-1 items-center text-sm text-primary hover:underline">View more <ChevronRight className="w-4 h-4" /></button>
       </div>
 
       <div className="space-y-3">

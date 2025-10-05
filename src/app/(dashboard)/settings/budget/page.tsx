@@ -1,8 +1,8 @@
 "use client"
 
-import { Header } from "@/src/components/header"
-import { Button } from "@/src/components/ui/button"
-import { StatCard } from "@/src/components/stat-card"
+
+import { Button } from "@/components/ui/button"
+import { StatCard } from "@/components/stat-card"
 import { Eye, Plus } from "lucide-react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 
@@ -25,8 +25,10 @@ const topUpsHistory = [
 export default function BudgetSettingsPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header
-        actions={
+      <div className="p-6">
+        {/* budget Header */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold mb-6">Budget Settings</h2>
           <div className="flex gap-3">
             <Button variant="outline" className="text-primary border-primary hover:bg-primary/10 bg-transparent">
               Set Budget Alert
@@ -36,17 +38,13 @@ export default function BudgetSettingsPage() {
               Request a top-up
             </Button>
           </div>
-        }
-      />
-
-      <div className="p-6">
-        <h2 className="text-2xl font-semibold mb-6">Budget Settings</h2>
+        </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-3 gap-6 mb-6">
-          <StatCard title="Budget" value="R 120,758,700.00" trend="+10.01%" trendLabel="vs last week" />
-          <StatCard title="Used Budget" value="R 60,758,700.00" trend="+10.01%" trendLabel="vs last week" />
-          <StatCard title="Remaining Budget" value="R 60,000,000.00" trend="+10.01%" trendLabel="vs last week" />
+          <StatCard title="Budget" value="120,758,700.00" trend="vs last week +10.01%" isPositive={true} />
+          <StatCard title="Used Budget" value="60,758,700.00" trend="+10.01%" isPositive={true} />
+          <StatCard title="Remaining Budget" value="60,000,000.00" trend="+10.01%" isPositive={true} />
         </div>
 
         {/* Budget Usage Chart */}
@@ -71,11 +69,11 @@ export default function BudgetSettingsPage() {
         </div>
 
         {/* Top-ups History Table */}
-        <div className="bg-white rounded-lg overflow-hidden">
+        <div className="bg-white overflow-hidden">
           <div className="p-6">
             <h3 className="text-lg font-semibold mb-4">Top-ups History</h3>
           </div>
-          <div className="overflow-x-auto">
+          <div className="border border-border rounded-lg overflow-x-auto">
             <table className="w-full">
               <thead className="bg-table-header">
                 <tr>
@@ -103,20 +101,24 @@ export default function BudgetSettingsPage() {
               </tbody>
             </table>
           </div>
-          <div className="flex justify-center gap-2 p-4 border-t">
-            <Button size="sm" className="w-8 h-8 rounded-full bg-primary text-white">
-              1
-            </Button>
-            <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
-              2
-            </Button>
-            <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
-              3
-            </Button>
-            <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
-              4
-            </Button>
+
+          <div className="flex items-center justify-center p-4 ">
+            <div className="flex justify-center rounded-full border border-border gap-2 p-2 ">
+              <Button size="sm" className="w-8 h-8 rounded-full bg-primary text-white">
+                1
+              </Button>
+              <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
+                2
+              </Button>
+              <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
+                3
+              </Button>
+              <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
+                4
+              </Button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

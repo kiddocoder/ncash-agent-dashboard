@@ -3,6 +3,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -37,12 +39,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --color-primary: #65b947; /* NCash custom color token */
-  --color-card-bg: #f5f3ed; /* NCash custom color token */
-  --color-chart-bg: #f9fff6; /* NCash custom color token */
-  --color-table-header: #e8f5e3; /* NCash custom color token */
-  --color-table-row: #f9fff6; /* NCash custom color token */
-  --color-notification-bg: #e8f5e3; /* NCash custom color token */
+  --color-primary: #65b947;
+  --color-primary-accent: #4cae36;
+  --color-card-bg: #e8c37d33;
+  --color-chart-bg: #f9fff6;
+  --color-table-header: #e8f5e3;
+  --color-table-row: #f9fff6;
+  --color-notification-bg: #00a9461a;
 }
 
 .dark {
@@ -118,12 +121,17 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-primary: #65b947; /* NCash custom color token */
-  --color-card-bg: #f5f3ed; /* NCash custom color token */
-  --color-chart-bg: #f9fff6; /* NCash custom color token */
-  --color-table-header: #e8f5e3; /* NCash custom color token */
-  --color-table-row: #f9fff6; /* NCash custom color token */
-  --color-notification-bg: #e8f5e3; /* NCash custom color token */
+  --color-primary: #65b947;
+  --color-card-bg: #f5f3ed;
+  --color-chart-bg: #f9fff6;
+  --color-table-header: #e8f5e3;
+  --color-table-row: #f9fff6;
+  --color-notification-bg: #e8f5e3;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  @apply antialiased;
 }
 
 @layer base {

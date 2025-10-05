@@ -1,11 +1,11 @@
-import { Header } from "@/src/components/header"
-import { StatCard } from "@/src/components/stat-card"
-import { Button } from "@/src/components/ui/button"
-import { FilterSection } from "@/src/components/filter-section"
-import { LoanDisbursementChart } from "@/src/components/charts/loan-disbursement-chart"
-import { LoanStatusChart } from "@/src/components/charts/loan-status-chart"
-import { RepaymentPerformanceChart } from "@/src/components/charts/repayment-performance-chart"
-import { LoansTable } from "@/src/components/loans-table"
+
+import { StatCard } from "@/components/stat-card"
+import { Button } from "@/components/ui/button"
+import { FilterSection } from "@/components/filter-section"
+import { LoanDisbursementChart } from "@/components/charts/loan-disbursement-chart"
+import { LoanStatusChart } from "@/components/charts/loan-status-chart"
+import { RepaymentPerformanceChart } from "@/components/charts/repayment-performance-chart"
+import { LoansTable } from "@/components/loans-table"
 
 export default function ReportsPage() {
   const statsData = [
@@ -57,20 +57,20 @@ export default function ReportsPage() {
   ]
 
   return (
-    <div className="min-h-screen">
-      <Header
-        title="Reports"
-        actions={
-          <div className="flex gap-3">
-            <Button variant="outline" size="sm">
-              Export PDF
-            </Button>
-            <Button size="sm" className="bg-primary hover:bg-primary/90">
-              Export CSV
-            </Button>
-          </div>
-        }
-      />
+    <div className="p-6">
+
+      {/* Reports Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-lg font-medium text-[#0a1106]">Reports</h2>
+        <div className="flex gap-3">
+          <Button variant="outline" size="sm">
+            Export PDF
+          </Button>
+          <Button size="sm" className="bg-primary hover:bg-primary/90">
+            Export CSV
+          </Button>
+        </div>
+      </div>
 
       <div className="p-6 space-y-6">
         {/* Stats Cards */}
@@ -81,14 +81,17 @@ export default function ReportsPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2">
-          <Button size="sm" className="bg-primary hover:bg-primary/90">
-            Loans
-          </Button>
-          <Button size="sm" variant="ghost">
-            Customers
-          </Button>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-start gap-2 bg-white p-2 rounded-lg border border-border">
+            <Button size="sm" className="bg-primary hover:bg-primary/90 px-6 py-4">
+              Loans
+            </Button>
+            <Button size="sm" variant="ghost">
+              Customers
+            </Button>
+          </div>
         </div>
+
 
         {/* Filter Section */}
         <FilterSection />

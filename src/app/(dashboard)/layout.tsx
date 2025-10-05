@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Sidebar } from "@/src/components/sidebar"
-import { Header } from "@/src/components/header"
+import { Sidebar } from "@/components/layouts/sidebar"
+import { Header } from "@/components/layouts/header"
 
 export const metadata: Metadata = {
   title: "NCash - Loan Management System",

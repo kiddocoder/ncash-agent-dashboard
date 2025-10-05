@@ -1,6 +1,6 @@
 "use client"
 
-import { Card } from "@/src/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 
 const data = [
@@ -15,7 +15,7 @@ const data = [
 
 export function LoanDisbursementChart() {
   return (
-    <Card className="p-6 bg-chart-bg border-none">
+    <Card className="p-6 bg-chart-bg border-none shadow-none">
       <h3 className="font-semibold mb-6">Loan Disbursement</h3>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
