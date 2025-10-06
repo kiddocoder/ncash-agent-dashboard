@@ -1,10 +1,9 @@
-import { Header } from "@/src/components/header"
-import { StatCard } from "@/src/components/stat-card"
-import { Button } from "@/src/components/ui/button"
-import { FilterSection } from "@/src/components/filter-section"
-import { LoansTable } from "@/src/components/loans-table"
+import { StatCard } from "@/components/stat-card"
+import { Button } from "@/components/ui/button"
+import { FilterSection } from "@/components/filter-section"
+import { LoansTable } from "@/components/loans-table"
 import { Plus, Search } from "lucide-react"
-import { Input } from "@/src/components/ui/input"
+import { Input } from "@/components/ui/input"
 
 export default function LoanRequestsPage() {
   const statsData = [
@@ -50,16 +49,17 @@ export default function LoanRequestsPage() {
   ]
 
   return (
-    <div className="min-h-screen">
-      <Header
-        title="Loan Requests & Approvals"
-        actions={
+    <div className="p-6">
+      {/* Calendar Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold mb-6">Schedule</h2>
+        <div className="flex gap-3">
           <Button size="sm" className="bg-primary hover:bg-primary/90">
             <Plus className="w-4 h-4 mr-2" />
             Create New Loan
           </Button>
-        }
-      />
+        </div>
+      </div>
 
       <div className="p-6 space-y-6">
         {/* Stats Cards */}
@@ -90,20 +90,23 @@ export default function LoanRequestsPage() {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-center gap-2">
-          <Button size="sm" className="w-10 h-10 rounded-full bg-primary hover:bg-primary/90">
-            1
-          </Button>
-          <Button size="sm" variant="ghost" className="w-10 h-10 rounded-full">
-            2
-          </Button>
-          <Button size="sm" variant="ghost" className="w-10 h-10 rounded-full">
-            3
-          </Button>
-          <Button size="sm" variant="ghost" className="w-10 h-10 rounded-full">
-            4
-          </Button>
+        <div className="flex items-center justify-center p-4 ">
+          <div className="flex justify-center rounded-full border border-border gap-2 p-2 ">
+            <Button size="sm" className="w-8 h-8 rounded-full bg-primary text-white">
+              1
+            </Button>
+            <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
+              2
+            </Button>
+            <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
+              3
+            </Button>
+            <Button size="sm" variant="ghost" className="w-8 h-8 rounded-full">
+              4
+            </Button>
+          </div>
         </div>
+
       </div>
     </div>
   )
