@@ -1,9 +1,11 @@
+"use client"
 import { StatCard } from "@/components/stat-card"
 import { Button } from "@/components/ui/button"
 import { FilterSection } from "@/components/filter-section"
 import { LoansTable } from "@/components/loans-table"
 import { Plus, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { NewLoanForm } from "@/components/forms/new-loan-form"
 
 export default function LoanRequestsPage() {
   const statsData = [
@@ -108,6 +110,7 @@ export default function LoanRequestsPage() {
         </div>
 
       </div>
+      <NewLoanForm open={true} onOpenChange={() => { }} />
     </div>
   )
 }

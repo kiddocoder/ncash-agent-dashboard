@@ -1,6 +1,9 @@
+"use client"
+
 import { Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { useRouter } from "next/navigation"
 
 interface LoanData {
   id: string
@@ -18,6 +21,7 @@ interface LoansTableProps {
 }
 
 export function LoansTable({ data, showDueDate = false }: LoansTableProps) {
+  const router = useRouter()
   return (
     <div className="bg-white border border-border rounded-lg overflow-hidden">
       <table className="w-full">
@@ -56,7 +60,9 @@ export function LoansTable({ data, showDueDate = false }: LoansTableProps) {
                 </Badge>
               </td>
               <td className="px-6 py-4">
-                <Button variant="ghost" size="sm">
+                <Button
+                  onClick={() => router.push(`/loan-requests/${loan.id}`)}
+                  variant="ghost" size="sm">
                   <Eye className="w-4 h-4 text-primary" />
                 </Button>
               </td>
