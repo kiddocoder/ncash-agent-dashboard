@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { X, User, Coins } from "lucide-react"
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
 
-export default function LoanDetailsPage({ params }: { params: { loan_id: string } }) {
+export default function LoanDetailsPage() {
     const repaymentData = [
         { name: "Paid", value: 48, color: "#65b947" },
         { name: "Remaining", value: 28, color: "#e8c37d" },
