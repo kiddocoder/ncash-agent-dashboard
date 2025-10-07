@@ -1,9 +1,14 @@
+"use client";
+
 import { StatCard } from "@/components/stat-card"
 import { ApprovalRateChart } from "@/components/charts/approval-rate-chart"
 import { RecentNotifications } from "@/components/recent-notifications"
 import { LoansTable } from "@/components/loans-table"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
+import { useState } from "react"
+import CustomerStep1 from "@/components/forms/customers/CustomerStep1";
+import ResidentChoice from "@/components/forms/customers/ResidentChoice";
 
 export default function Page() {
   const statsData = [
@@ -60,6 +65,8 @@ export default function Page() {
     },
   ]
 
+  const [addCustomerModalOpen, setAddCustomerModalOpen] = useState(true);
+
   return (
 
     <div className="p-6">
@@ -74,7 +81,11 @@ export default function Page() {
             <Plus className="w-4 h-4 mr-2" />
             New Loan
           </Button>
-          <Button className="bg-[#65b947] hover:bg-[#65b947]/90 text-white">
+          <Button
+            onClick={() => {
+              setAddCustomerModalOpen(true)
+            }}
+            className="bg-[#65b947] hover:bg-[#65b947]/90 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Create New Customer
           </Button>
@@ -105,6 +116,8 @@ export default function Page() {
           <LoansTable data={loansData} />
         </div>
       </div>
+      {/* <CustomerStep1 open={addCustomerModalOpen} onClose={() => setAddCustomerModalOpen(false)} /> */}
+      <ResidentChoice open={addCustomerModalOpen} onClose={() => setAddCustomerModalOpen(false)} />
     </div>
   )
 }

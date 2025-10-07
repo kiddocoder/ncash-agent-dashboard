@@ -13,7 +13,7 @@ export function Header({ title, actions }: HeaderProps) {
     <header className="bg-white border-b border-border">
       <div className="flex items-center justify-between px-6 py-4">
         <div>
-          <h1 className="text-xl font-semibold">Welcome Back, Toussaint</h1>
+          <h1 className="text-xl font-semibold">Welcome Back, Agent</h1>
           {title && <p className="text-sm text-muted-foreground mt-1">{title}</p>}
         </div>
 
@@ -41,7 +41,7 @@ export function Header({ title, actions }: HeaderProps) {
             <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
               <Image src="/profile.svg" alt="User" width={32} height={32} />
             </div>
-            <span className="text-sm font-medium">Toussaint ir.</span>
+            <span className="text-sm font-medium">Njc Agent</span>
             <ChevronDown className="w-4 h-4" />
           </button>
         </div>

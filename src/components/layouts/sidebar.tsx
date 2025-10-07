@@ -15,6 +15,7 @@ import {
   SlidersHorizontal,
   LogOut,
 } from "lucide-react"
+
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/" },
   { icon: Users, label: "Customer Management", href: "/customers" },
