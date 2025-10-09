@@ -1,13 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Camera, FileText, X } from "lucide-react"
+import { Camera, FileText, Search, X } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import Image from "next/image"
 
 interface NewCustomerFormProps {
     open: boolean
@@ -43,6 +44,19 @@ interface CustomerFormData {
     paymentMethod: string
 }
 
+const RESIDENTS = [
+    { id: 1, name: "John Doe", idNumber: "1234 5678 9012 345" },
+    { id: 2, name: "Jane Smith", idNumber: "2345 6789 0123 456" },
+    { id: 3, name: "Alice Johnson", idNumber: "3456 7890 1234 567" },
+    { id: 4, name: "Bob Brown", idNumber: "4567 8901 2345 678" },
+    { id: 5, name: "Charlie Davis", idNumber: "5678 9012 3456 789" },
+    { id: 6, name: "Diana Evans", idNumber: "6789 0123 4567 890" },
+    { id: 7, name: "Frank Green", idNumber: "7890 1234 5678 901" },
+    { id: 8, name: "Grace Harris", idNumber: "8901 2345 6789 012" },
+    { id: 9, name: "Hank Ingram", idNumber: "9012 3456 7890 123" },
+    { id: 10, name: "Ivy Jackson", idNumber: "0123 4567 8901 234" },
+];
+
 export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFormProps) {
     const [step, setStep] = useState(1)
     const [formData, setFormData] = useState<CustomerFormData>({
@@ -75,7 +89,7 @@ export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFor
     }
 
     const handleNext = () => {
-        if (step < 4) {
+        if (step < 6) {
             setStep(step + 1)
         } else {
             onSubmit?.(formData)
@@ -89,9 +103,21 @@ export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFor
         }
     }
 
+    const [residents, setResidents] = useState(RESIDENTS);
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const query = e.target.value.toLowerCase();
+
+        const filteredResidents = RESIDENTS.filter(resident =>
+            resident.name.toLowerCase().includes(query) ||
+            resident.idNumber.includes(query)
+        );
+        setResidents(filteredResidents);
+    };
+
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="md:max-w-5xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-semibold">
                         {step <= 2 ? "Client's Personal information" : "Additional information"}
@@ -105,8 +131,79 @@ export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFor
                 </DialogHeader>
 
                 <div className="space-y-6 py-4">
-                    {/* Step 1: Document Upload */}
+
+                    {/** step = 1 : Choose how you’d like to register this Customer*/}
                     {step === 1 && (
+                        <div className="space-y-6">
+                            <div className="cursor-pointer hover:bg-primary/10 p-4 border border-border rounded-lg grid grid-cols-2 gap-2">
+                                <Image
+                                    src="/undraw_quiet-street_v45k.svg"
+                                    alt="Customer Registration"
+                                    width={272}
+                                    height={129}
+                                    className="mx-auto mb-4"
+                                />
+                                <div>
+                                    <p className="text-lg font-bold mb-2">As SA Resident</p>
+                                    <p>By choosing SA Resident, your account will be created using a South African ID and local documents. You’ll follow the standard KYC process and access loans available to South African citizens and permanent residents.</p>
+                                </div>
+                            </div>
+
+                            <div className="cursor-pointer hover:bg-primary/10 p-4 border border-border rounded-lg grid grid-cols-2 gap-2">
+                                <Image
+                                    src="/undraw_travel-mode_ydxo.svg"
+                                    alt="Customer Registration"
+                                    width={243}
+                                    height={157}
+                                    className="mx-auto mb-4"
+                                />
+                                <div>
+                                    <p className="text-lg font-bold mb-2">As a Foreigner</p>
+                                    <p>By choosing Foreigner, your account will be created using a South African ID and local documents. You’ll follow the standard KYC process and access loans available to South African citizens and permanent residents.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    )}
+
+                    {/** step 2 = : Select an SA resident assigned to this client*/}
+                    {step === 2 && (
+                        <div className="space-y-6">
+                            <div className="relative w-full">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                <Input
+                                    onChange={handleSearchChange}
+                                    placeholder="Enter the resident name" className="pl-10 py-4 bg-input" />
+                            </div>
+
+                            {/* find profile results*/}
+                            <div className="flex flex-col gap-2 max-h-96 overflow-y-auto border border-border rounded-md p-4 mt-4 ">
+                                {
+                                    residents.map((resident) => (
+                                        <div key={resident.id} className="flex items-center  p-4 bg-white">
+                                            <Image
+                                                src="/profile.svg"
+                                                alt="Customer Registration"
+                                                width={50}
+                                                height={50}
+                                                className="rounded-full bg-gray-200 p-[2px] object-cover"
+                                            />
+                                            <div className="ml-4">
+                                                <p className="text-lg font-bold mb-1">{resident.name}</p>
+                                                <p className="text-sm text-muted-foreground">
+                                                    ID: <span className="font-semibold">{resident.idNumber}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Step 3: Document Upload */}
+                    {step === 3 && (
                         <div className="space-y-6">
                             {/* Profile Selfie */}
                             <div className="space-y-2">
@@ -163,8 +260,8 @@ export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFor
                         </div>
                     )}
 
-                    {/* Step 2: Contact Details */}
-                    {step === 2 && (
+                    {/* Step 4: Contact Details */}
+                    {step === 4 && (
                         <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <Label>Email address</Label>
@@ -259,8 +356,8 @@ export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFor
                         </div>
                     )}
 
-                    {/* Step 3: Additional Information */}
-                    {step === 3 && (
+                    {/* Step 5: Additional Information */}
+                    {step === 5 && (
                         <div className="space-y-6">
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="space-y-2">
@@ -354,8 +451,8 @@ export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFor
                         </div>
                     )}
 
-                    {/* Step 4: Payment Method */}
-                    {step === 4 && (
+                    {/* Step 6: Payment Method */}
+                    {step === 6 && (
                         <div className="space-y-6">
                             {/* Info Banner */}
                             <div className="bg-[#fef3c7] border border-[#fbbf24] rounded-lg p-4 flex items-start gap-3">
@@ -454,10 +551,10 @@ export function NewCustomerForm({ open, onOpenChange, onSubmit }: NewCustomerFor
                         Back
                     </Button>
                     <Button onClick={handleNext} className="bg-[#65b947] hover:bg-[#549639] text-white px-8">
-                        {step === 4 ? "Submit" : "Continue"}
+                        {step === 6 ? "Submit" : "Continue"}
                     </Button>
                 </div>
             </DialogContent>
-        </Dialog>
+        </Dialog >
     )
 }

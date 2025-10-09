@@ -51,14 +51,7 @@ export function NewLoanForm({ open, onOpenChange }: NewLoanFormProps) {
             <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader className="flex flex-row items-center justify-between">
                     <DialogTitle className="text-2xl font-semibold">New Loan</DialogTitle>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={handleClose}
-                        className="h-8 w-8 rounded-full bg-red-600 text-white hover:bg-red-700 hover:text-white"
-                    >
-                        <X className="h-4 w-4" />
-                    </Button>
+
                 </DialogHeader>
 
                 <div className="mt-6">
@@ -113,17 +106,17 @@ export function NewLoanForm({ open, onOpenChange }: NewLoanFormProps) {
                                     <div className="grid grid-cols-2 gap-4">
                                         <label className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
                                             <RadioGroupItem value="fnb" />
-                                            <img src="/fnb-bank-logo.png" alt="FNB" className="h-8" />
+                                            <img src="/First_National_Bank_Logo.svg" alt="FNB" className="h-8" />
                                         </label>
 
                                         <label className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
                                             <RadioGroupItem value="standard" />
-                                            <img src="/standard-bank-logo.png" alt="Standard Bank" className="h-8" />
+                                            <img src="/standard-bank-vector-logo 1.png" alt="Standard Bank" className="h-8" />
                                         </label>
 
                                         <label className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50 col-span-2">
                                             <RadioGroupItem value="absa" />
-                                            <img src="/generic-bank-logo.png" alt="ABSA" className="h-8" />
+                                            <img src="/Absa-logo-1 1.png" alt="ABSA" className="h-8" />
                                         </label>
                                     </div>
                                 </RadioGroup>

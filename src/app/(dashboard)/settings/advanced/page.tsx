@@ -7,12 +7,16 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { ImagePlus } from "lucide-react"
+import { UpdatePasswordForm } from "../_components/update-password"
+import { ActiveSessionsDialog } from "../_components/active-sessions"
 
 export default function AdvancedSettingsPage() {
   const [activeTab, setActiveTab] = useState<"account" | "security" | "notifications">("account")
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(true)
   const [securityAlertsEnabled, setSecurityAlertsEnabled] = useState(true)
   const [recoveryEnabled, setRecoveryEnabled] = useState(true)
+  const [updatePasswordOpen, setUpdatePasswordOpen] = useState(false)
+  const [activeSessionsOpen, setActiveSessionsOpen] = useState(false)
 
   // Notification toggles
   const [newLoanAppEnabled, setNewLoanAppEnabled] = useState(true)
@@ -139,7 +143,9 @@ export default function AdvancedSettingsPage() {
                   password to confirm the change.
                 </p>
               </div>
-              <Button className="bg-primary hover:bg-primary/90 text-white ml-6">Update Password</Button>
+              <Button
+                onClick={() => setUpdatePasswordOpen(true)}
+                className="bg-primary cursor-pointer hover:bg-primary/90 text-white ml-6">Update Password</Button>
             </div>
 
             {/* Active Sessions */}
@@ -151,7 +157,9 @@ export default function AdvancedSettingsPage() {
                   remotely.
                 </p>
               </div>
-              <Button className="bg-primary hover:bg-primary/90 text-white ml-6">View Devices</Button>
+              <Button
+                onClick={() => setActiveSessionsOpen(true)}
+                className="cursor-pointer bg-primary hover:bg-primary/90 text-white ml-6">View Devices</Button>
             </div>
 
             {/* Two-Factor Authentication */}
@@ -273,6 +281,8 @@ export default function AdvancedSettingsPage() {
           </div>
         )}
       </div>
+      <UpdatePasswordForm open={updatePasswordOpen} onOpenChange={setUpdatePasswordOpen} />
+      <ActiveSessionsDialog open={activeSessionsOpen} onOpenChange={setActiveSessionsOpen} />
     </div>
   )
 }

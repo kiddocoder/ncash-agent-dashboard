@@ -42,7 +42,7 @@ export function BookAppointmentForm({ open, onOpenChange }: BookAppointmentFormP
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                    <DialogTitle className="text-2xl font-semibold">Book your appointment now</DialogTitle>
+                    <DialogTitle className="text-2xl font-semibold">Book appointment now</DialogTitle>
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit} className="space-y-4">

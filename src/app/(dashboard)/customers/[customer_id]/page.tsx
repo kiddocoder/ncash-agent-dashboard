@@ -2,11 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
-import { Trash2, Printer, Download } from "lucide-react"
+import { Trash2, Printer, Download, ArrowLeft } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 export default function CustomerProfilePage() {
     // Mock customer data - in real app, fetch based on params.customer_id
+    const router = useRouter();
     const customer = {
         fullName: "John Mokoena",
         customerId: "CUST-004582",
@@ -24,7 +26,7 @@ export default function CustomerProfilePage() {
         totalRepaid: 24000,
         outstandingAmount: 8450,
         repaymentPercentage: 52,
-        profilePhoto: "/diverse-user-avatars.png",
+        profilePhoto: "/profile.svg",
     }
 
     // Data for the circular progress chart
@@ -39,7 +41,11 @@ export default function CustomerProfilePage() {
         <div className="min-h-screen bg-background">
 
             <div className="p-8">
-                <h1 className="text-2xl font-semibold mb-6">Customer Profile</h1>
+                <div className="flex items-center  mb-6 gap-4">
+                    <ArrowLeft className="w-6 h-6 cursor-pointer" onClick={() => router.back()} />
+                    <h1 className="text-2xl font-semibold">Customer Profile</h1>
+                </div>
+
 
                 {/* Green Header Banner with Profile Photo */}
                 <div className="relative bg-primary h-44 rounded-t-lg">

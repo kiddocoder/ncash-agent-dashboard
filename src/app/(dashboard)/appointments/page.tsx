@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ChevronLeft, ChevronRight, Search, Plus } from "lucide-react"
+import { BookAppointmentForm } from "@/components/forms/book-appointment"
 
 const calendarEvents = [
   {
@@ -68,6 +69,8 @@ const calendarEvents = [
 export default function AppointmentsPage() {
   const [currentMonth] = useState("September 2024")
   const [viewMode, setViewMode] = useState<"daily" | "weekly" | "monthly">("daily")
+  const [bookAppointment, setBookAppointment] = useState(false)
+
 
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THUR", "FRI", "SAT"]
   const calendarDays = [
@@ -120,7 +123,9 @@ export default function AppointmentsPage() {
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-semibold mb-6">Schedule</h2>
         <div className="flex gap-3">
-          <Button className="bg-primary hover:bg-primary/90 text-white">
+          <Button
+            onClick={() => setBookAppointment(true)}
+            className="cursor-pointer bg-primary hover:bg-primary/90 text-white">
             <Plus className="w-4 h-4 mr-2" />
             New Schedule
           </Button>
@@ -210,6 +215,7 @@ export default function AppointmentsPage() {
           </div>
         </div>
       </div>
+      <BookAppointmentForm open={bookAppointment} onOpenChange={() => setBookAppointment(false)} />
     </div>
   )
 }

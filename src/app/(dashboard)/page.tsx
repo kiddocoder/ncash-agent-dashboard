@@ -9,6 +9,8 @@ import { Plus } from "lucide-react"
 import { useState } from "react"
 import CustomerStep1 from "@/components/forms/customers/CustomerStep1";
 import ResidentChoice from "@/components/forms/customers/ResidentChoice";
+import { NewLoanForm } from "@/components/forms/new-loan-form";
+import { NewCustomerForm } from "@/components/forms/customers/new-customer";
 
 export default function Page() {
   const statsData = [
@@ -65,7 +67,8 @@ export default function Page() {
     },
   ]
 
-  const [addCustomerModalOpen, setAddCustomerModalOpen] = useState(true);
+  const [addCustomerModalOpen, setAddCustomerModalOpen] = useState(false);
+  const [newLoank, setNewLoan] = useState(false)
 
   return (
 
@@ -75,6 +78,7 @@ export default function Page() {
         <h2 className="text-lg font-medium text-[#0a1106]">Overview</h2>
         <div className="flex gap-3">
           <Button
+            onClick={() => setNewLoan(true)}
             variant="outline"
             className="bg-white border-[#65b947] text-[#65b947] hover:bg-[#65b947] hover:text-white"
           >
@@ -116,8 +120,8 @@ export default function Page() {
           <LoansTable data={loansData} />
         </div>
       </div>
-      {/* <CustomerStep1 open={addCustomerModalOpen} onClose={() => setAddCustomerModalOpen(false)} /> */}
-      <ResidentChoice open={addCustomerModalOpen} onClose={() => setAddCustomerModalOpen(false)} />
+      <NewCustomerForm open={addCustomerModalOpen} onOpenChange={() => setAddCustomerModalOpen(false)} />
+      <NewLoanForm open={newLoank} onOpenChange={() => setNewLoan(false)} />
     </div>
   )
 }

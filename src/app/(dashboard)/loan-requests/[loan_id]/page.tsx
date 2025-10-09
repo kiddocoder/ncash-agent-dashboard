@@ -2,9 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { X, User, Coins } from "lucide-react"
+import { useRouter } from "next/navigation";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
 
 export default function LoanDetailsPage() {
+    const router = useRouter();
     const repaymentData = [
         { name: "Paid", value: 48, color: "#65b947" },
         { name: "Remaining", value: 28, color: "#e8c37d" },
@@ -18,9 +20,10 @@ export default function LoanDetailsPage() {
 
     return (
         <div className="p-8">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-8 max-w-4xl mx-auto">
                 <h1 className="text-2xl font-semibold">Loan Details</h1>
                 <Button
+                    onClick={() => router.back()}
                     variant="ghost"
                     size="icon"
                     className="h-8 w-8 rounded-full bg-red-600 text-white hover:bg-red-700 hover:text-white"
@@ -29,7 +32,7 @@ export default function LoanDetailsPage() {
                 </Button>
             </div>
 
-            <div className="max-w-4xl">
+            <div className="max-w-4xl mx-auto">
                 {/* Progress Chart */}
                 <div className="flex justify-center mb-8">
                     <div className="relative w-64 h-64">
@@ -62,7 +65,7 @@ export default function LoanDetailsPage() {
                         <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
                             <User className="h-5 w-5 text-white" />
                         </div>
-                        <span className="font-medium">Iradukunda Toussaint</span>
+                        <span className="font-medium">Buhoror agent</span>
                     </div>
 
                     <div className="flex items-center gap-3">

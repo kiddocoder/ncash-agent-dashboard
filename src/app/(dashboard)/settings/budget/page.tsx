@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button"
 import { StatCard } from "@/components/stat-card"
 import { Eye, Plus } from "lucide-react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
+import { RequestTopupForm } from "../_components/request-topup"
+import { useState } from "react"
+import { SetBudgetAlertForm } from "@/components/forms/set-budget-alert"
 
 const budgetData = [
   { month: "Jan", usage: 15000, target: 10000 },
@@ -23,6 +26,9 @@ const topUpsHistory = [
 ]
 
 export default function BudgetSettingsPage() {
+  const [open, setOpen] = useState(false)
+  const [newBudgetAlert, setNewBudgetAlert] = useState(false)
+
   return (
     <div className="min-h-screen bg-background">
       <div className="p-6">
@@ -30,10 +36,15 @@ export default function BudgetSettingsPage() {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-semibold mb-6">Budget Settings</h2>
           <div className="flex gap-3">
-            <Button variant="outline" className="text-primary border-primary hover:bg-primary/10 bg-transparent">
+            <Button
+              onClick={() => setNewBudgetAlert(true)}
+              variant="outline"
+              className="curor-pointertext-primary border-primary hover:bg-primary/10 bg-transparent">
               Set Budget Alert
             </Button>
-            <Button className="bg-primary hover:bg-primary/90 text-white">
+            <Button
+              onClick={() => setOpen(true)}
+              className="cursor-pointer bg-primary hover:bg-primary/90 text-white">
               <Plus className="w-4 h-4 mr-2" />
               Request a top-up
             </Button>
@@ -121,6 +132,8 @@ export default function BudgetSettingsPage() {
 
         </div>
       </div>
+      <RequestTopupForm open={open} onOpenChange={setOpen} />
+      <SetBudgetAlertForm open={newBudgetAlert} onOpenChange={() => setNewBudgetAlert(false)} />
     </div>
   )
 }

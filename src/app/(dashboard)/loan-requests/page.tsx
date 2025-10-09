@@ -6,6 +6,7 @@ import { LoansTable } from "@/components/loans-table"
 import { Plus, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { NewLoanForm } from "@/components/forms/new-loan-form"
+import { useState } from "react"
 
 export default function LoanRequestsPage() {
   const statsData = [
@@ -49,6 +50,7 @@ export default function LoanRequestsPage() {
       status: "Approved" as const,
     },
   ]
+  const [newLoank, setNewLoan] = useState(false)
 
   return (
     <div className="p-6">
@@ -56,7 +58,9 @@ export default function LoanRequestsPage() {
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-semibold mb-6">Schedule</h2>
         <div className="flex gap-3">
-          <Button size="sm" className="bg-primary hover:bg-primary/90">
+          <Button
+            onClick={() => setNewLoan(true)}
+            size="sm" className="bg-primary hover:bg-primary/90">
             <Plus className="w-4 h-4 mr-2" />
             Create New Loan
           </Button>
@@ -110,7 +114,7 @@ export default function LoanRequestsPage() {
         </div>
 
       </div>
-      <NewLoanForm open={true} onOpenChange={() => { }} />
+      <NewLoanForm open={newLoank} onOpenChange={() => setNewLoan(false)} />
     </div>
   )
 }
