@@ -49,7 +49,7 @@ export function Sidebar() {
       <div className="h-24 flex items-center justify-center border-b border-white/10">
         <div className="text-3xl font-bold">
           <span className="inline-block border-4 border-white px-3 py-1 rounded">
-            NC<span className="text-2xl">A</span>SH
+            NJC<span className="text-2xl">CASH</span>ZONE
           </span>
         </div>
       </div>
